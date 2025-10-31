@@ -1,6 +1,6 @@
 import sys
-from ArconSDKworking import ArconSDK
-
+#from ArconSDKworking import ArconSDK
+from ArconSDK import ArconSDK
 
 def get_sec(token, username, alias_name):
     try:
