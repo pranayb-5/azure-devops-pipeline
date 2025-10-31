@@ -13,7 +13,7 @@ steps:
   # 2) Install deps (if any)
   - script: |
       python -m pip install --upgrade pip
-      #pip install -r requirements.txt
+      
     displayName: 'Install dependencies'
 
   # 3) Run Python, capture stdout in a Bash variable, set a pipeline variable
