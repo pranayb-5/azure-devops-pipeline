@@ -40,7 +40,10 @@ steps:
 
   # 4) Use the variable
   - bash: |
-      echo "Using value: $(MY_SECRET)"
+      echo "ALIAS: $(ALIAS)"
+      echo "IP: $(IP)"
+      echo "USER: $(USER)"
+      echo "PASSWORD: $(PASSWORD)"
     displayName: 'Use the Python value'
 
   - script: |
