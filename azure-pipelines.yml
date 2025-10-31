@@ -5,10 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  SSH_USER: 'user1'                  # change
-  SSH_HOST: '135.235.136.171'         # change
-  SSH_PORT: '22'                      # optional
-  REMOTE_CMD: 'uname -a'              # your single command
+  REMOTE_CMD: 'date'              # your single command
   
 
 steps:
@@ -51,8 +48,8 @@ steps:
   
       export SSHPASS="$(PASSWORD)"
   
-      USER_VAL="${USER:-$SSH_USER}"
-      HOST_VAL="${IP:-$SSH_HOST}"
+      USER_VAL="${USER:-$USER}"
+      HOST_VAL="${IP:-$IP}"
       PORT_VAL="${SSH_PORT:-22}"
   
       echo "Running remote: '${REMOTE_CMD}' on ${USER_VAL}@${HOST_VAL}:${PORT_VAL}"
