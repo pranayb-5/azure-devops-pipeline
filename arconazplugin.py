@@ -17,7 +17,7 @@ def get_sec(token, username, alias_name):
                 print(f"Password: {server_info['password']}")
             	#print(f"##vso[task.setvariable variable={key};issecret=true]{server_info['password']}")
             # print("response:", response)
-            return response
+            #return response
         else:
             print("Failed to obtain response")
 
@@ -29,4 +29,4 @@ if __name__ == "__main__":
     token = sys.argv[1]
     username = sys.argv[2]
     alias_name = sys.argv[3]
-    sec = get_sec(token, username, alias_name)
+    get_sec(token, username, alias_name)
