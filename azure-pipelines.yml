@@ -19,7 +19,7 @@ steps:
   # 3) Run Python, capture stdout in a Bash variable, set a pipeline variable
   - bash: |
       set -e
-      VALUE="$(python tools/myscript.py arg1 arg2)"       # <-- script prints the value
+      VALUE="$(python myscript.py arg1 arg2)"       # <-- script prints the value
       echo "Script returned: $VALUE"
       echo "##vso[task.setvariable variable=pyValue]$VALUE"
     displayName: 'Run Python and set pipeline variable'
