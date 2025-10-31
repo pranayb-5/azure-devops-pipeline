@@ -16,7 +16,7 @@ def get_sec(token,username,alias_name):
 	            print(f"Alias: {server_info['aliasName']}")
 	            print(f"IP: {server_info['serverIp']}")
 	            print(f"User: {server_info['userName']}")	  
-				print(f"##vso[task.setvariable variable={key}};issecret=true]{server_info['password']}")
+				print(f"##vso[task.setvariable variable={key};issecret=true]{server_info['password']}")
             	#print("response:", response)
             return response
         else:
