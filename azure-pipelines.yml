@@ -46,44 +46,44 @@ steps:
     displayName: 'Use the Python value'
 
   - script: |
-    set -euo pipefail
-    sudo apt-get install -y sshpass openssh-client
-
-    export SSHPASS="$(PASSWORD)"
-
-    USER_VAL="${USER:-$SSH_USER}"
-    HOST_VAL="${IP:-$SSH_HOST}"
-    PORT_VAL="${SSH_PORT:-22}"
-
-    echo "Running remote: '${REMOTE_CMD}' on ${USER_VAL}@${HOST_VAL}:${PORT_VAL}"
-
-    set +e
-    SSH_OUT="$(
-      sshpass -e ssh \
-        -o StrictHostKeyChecking=no \
-        -o UserKnownHostsFile=/dev/null \
-        -o PreferredAuthentications=password,keyboard-interactive \
-        -o PubkeyAuthentication=no \
-        -o NumberOfPasswordPrompts=1 \
-        -o LogLevel=ERROR \
-        -p "${PORT_VAL}" \
-        "${USER_VAL}@${HOST_VAL}" -- "$(REMOTE_CMD)" 2>&1
-    )"
-    RC=$?
-    set -e
-
-    echo "----- Remote command output -----"
-    echo "$SSH_OUT"
-    echo "---------------------------------"
-    echo "##vso[task.setvariable variable=REMOTE_OUTPUT]$SSH_OUT"
-
-    if [ $RC -eq 255 ]; then
-      echo "##vso[task.logissue type=error]SSH failed to connect (exit 255). Check network reachability, auth method, or server SSH settings."
-      exit 255
-    elif [ $RC -ne 0 ]; then
-      echo "##vso[task.logissue type=error]Remote command exited with code $RC"
-      exit $RC
-    fi
+      set -euo pipefail
+      sudo apt-get install -y sshpass openssh-client
+  
+      export SSHPASS="$(PASSWORD)"
+  
+      USER_VAL="${USER:-$SSH_USER}"
+      HOST_VAL="${IP:-$SSH_HOST}"
+      PORT_VAL="${SSH_PORT:-22}"
+  
+      echo "Running remote: '${REMOTE_CMD}' on ${USER_VAL}@${HOST_VAL}:${PORT_VAL}"
+  
+      set +e
+      SSH_OUT="$(
+        sshpass -e ssh \
+          -o StrictHostKeyChecking=no \
+          -o UserKnownHostsFile=/dev/null \
+          -o PreferredAuthentications=password,keyboard-interactive \
+          -o PubkeyAuthentication=no \
+          -o NumberOfPasswordPrompts=1 \
+          -o LogLevel=ERROR \
+          -p "${PORT_VAL}" \
+          "${USER_VAL}@${HOST_VAL}" -- "$(REMOTE_CMD)" 2>&1
+      )"
+      RC=$?
+      set -e
+  
+      echo "----- Remote command output -----"
+      echo "$SSH_OUT"
+      echo "---------------------------------"
+      echo "##vso[task.setvariable variable=REMOTE_OUTPUT]$SSH_OUT"
+  
+      if [ $RC -eq 255 ]; then
+        echo "##vso[task.logissue type=error]SSH failed to connect (exit 255). Check network reachability, auth method, or server SSH settings."
+        exit 255
+      elif [ $RC -ne 0 ]; then
+        echo "##vso[task.logissue type=error]Remote command exited with code $RC"
+        exit $RC
+      fi
   displayName: 'SSH, print output, propagate exit code'
 
   
