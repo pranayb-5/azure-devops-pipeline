@@ -12,7 +12,7 @@ def get_sec(token,username,alias_name):
          "OpenForHours": 10  }]
         response = arcon_sdk.get_credential(data)
         if response:
-            print("response:", response)
+            #print("response:", response)
             return response
         else:
             print("Failed to obtain response")
