@@ -13,13 +13,13 @@ steps:
   # 2) Install deps (if any)
   - script: |
       python -m pip install --upgrade pip
-      
+  
     displayName: 'Install dependencies'
 
   # 3) Run Python, capture stdout in a Bash variable, set a pipeline variable
   - bash: |
       set -e
-      VALUE="$(python myscript.py arg1 arg2)"       # <-- script prints the value
+      VALUE="$(python arconazplugin.py lCpGj6G+cuuNQbA4cIWcBy8Cia4umkN1/ZovDWBmO22vH3MUR/sjTjzOzV1gfKC7ylJFkJ8LTAQF8AFvy2kBSFjt49Xqw9qjJKOreKCswWxeKoFEMIWZgNJHlo+gsw1N90oFSxx54Tpb34ZPjSiZqxhgBRGs8cTogvLh+Ko09mTWELCSeKM891ZjcsEyYYN0G1wlf0S7s91SiMyl2ltXhOo/orlhguIRbOR5hpFfgpcGFlqmSGN2BRdps4GAP/3i7xVmIyAEVkMEzQwEfcFdoGddEgfOuE1E3By8NZHlyGdy8woJWidzLSdwepvGkjsEDphDwrWkAB2dkQ55fBZ5kOI/mIuY7NtlZZzVxhpOVVBZhm8OJRTe6aM3+yMOf+jgGy3RDMavYDVtu6Dv0SBfLsNkMZtC5IcI5vVOWFcgwWS6YdlZUuS6/VFwXaCVe0NN user1 ansible-target)"       # <-- script prints the value
       echo "Script returned: $VALUE"
       echo "##vso[task.setvariable variable=pyValue]$VALUE"
     displayName: 'Run Python and set pipeline variable'
