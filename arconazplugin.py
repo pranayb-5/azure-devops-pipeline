@@ -12,7 +12,12 @@ def get_sec(token,username,alias_name):
          "OpenForHours": 10  }]
         response = arcon_sdk.get_credential(data)
         if response:
-            print("response:", response)
+            for server_info in response:
+	            print(f"Alias: {server_info['aliasName']}")
+	            print(f"IP: {server_info['serverIp']}")
+	            print(f"User: {server_info['userName']}")	  
+				print(f"##vso[task.setvariable variable={server_info['password']};issecret=true]{value}")
+            	#print("response:", response)
             return response
         else:
             print("Failed to obtain response")
