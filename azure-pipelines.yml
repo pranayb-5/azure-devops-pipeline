@@ -84,6 +84,6 @@ steps:
         echo "##vso[task.logissue type=error]Remote command exited with code $RC"
         exit $RC
       fi
-  displayName: 'SSH, print output, propagate exit code'
+    displayName: 'SSH, print output, propagate exit code'
 
   
