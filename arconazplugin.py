@@ -9,7 +9,7 @@ def get_sec(token,username,alias_name):
         data = [{
         "UserName": username,
         "AliasName": alias_name ,
-         "OpenForHours": 10  }]
+        "OpenForHours": 10  }]
         response = arcon_sdk.get_credential(data)
         if response:
             for server_info in response:
