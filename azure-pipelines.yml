@@ -1,0 +1,30 @@
+# azure-pipelines.yml
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  # 1) Pick your Python version
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.12'   # or 3.11/3.10 as needed
+
+  # 2) Install deps (if any)
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
+
+  # 3) Run Python, capture stdout in a Bash variable, set a pipeline variable
+  - bash: |
+      set -e
+      VALUE="$(python tools/myscript.py arg1 arg2)"       # <-- script prints the value
+      echo "Script returned: $VALUE"
+      echo "##vso[task.setvariable variable=pyValue]$VALUE"
+    displayName: 'Run Python and set pipeline variable'
+
+  # 4) Use the variable
+  - bash: |
+      echo "Using value: $(pyValue)"
+    displayName: 'Use the Python value'
