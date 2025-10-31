@@ -11,10 +11,10 @@ def get_sec(token, username, alias_name):
         response = arcon_sdk.get_credential(data)
         if response:
             for server_info in response:
-                print(f"ALIAS: {server_info['aliasName']}")                
-                print(f"IP: {server_info['serverIp']}")
-                print(f"USER: {server_info['userName']}")            
-                print(f"PASSWORD: {server_info['password']}")
+                print(f"ALIAS={server_info['aliasName']}")                
+                print(f"IP={server_info['serverIp']}")
+                print(f"USER={server_info['userName']}")            
+                print(f"PASSWORD={server_info['password']}")
                 #secrets = {"MY_SECRET": {server_info['password']}}
             	#print(f"##vso[task.setvariable variable={key};issecret=true]{server_info['password']}")
             #print("response:", response)
