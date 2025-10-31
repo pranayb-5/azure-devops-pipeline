@@ -16,6 +16,7 @@ steps:
       pip install psutil    
       pip install pyotp
       pip install requests
+      pip install Crypto
     displayName: 'Install dependencies'
 
   # 3) Run Python, capture stdout in a Bash variable, set a pipeline variable
