@@ -50,7 +50,7 @@ steps:
       sudo apt-get update -y
       sudo apt-get install -y sshpass
 
-      export SSHPASS="$(MY_SECRET)"
+      export SSHPASS="$(PASSWORD)"
 
       # Run one command via SSH using password from secret variable
       sshpass -e ssh \
