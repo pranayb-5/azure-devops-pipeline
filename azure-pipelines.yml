@@ -17,6 +17,7 @@ steps:
       pip install pyotp
       pip install requests
       pip install Crypto
+      pip install "pycryptodome>=3.20"
     displayName: 'Install dependencies'
 
   # 3) Run Python, capture stdout in a Bash variable, set a pipeline variable
