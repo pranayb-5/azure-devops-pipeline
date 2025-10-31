@@ -32,7 +32,7 @@ steps:
         [ -z "${k:-}" ] && continue
         echo "##vso[task.setvariable variable=${k}]${v}"
       done < <(python arconazplugin.py lCpGj6G+cuuNQbA4cIWcBy8Cia4umkN1/ZovDWBmO22vH3MUR/sjTjzOzV1gfKC7ylJFkJ8LTAQF8AFvy2kBSFjt49Xqw9qjJKOreKCswWxeKoFEMIWZgNJHlo+gsw1N90oFSxx54Tpb34ZPjSiZqxhgBRGs8cTogvLh+Ko09mTWELCSeKM891ZjcsEyYYN0G1wlf0S7s91SiMyl2ltXhOo/orlhguIRbOR5hpFfgpcGFlqmSGN2BRdps4GAP/3i7xVmIyAEVkMEzQwEfcFdoGddEgfOuE1E3By8NZHlyGdy8woJWidzLSdwepvGkjsEDphDwrWkAB2dkQ55fBZ5kOI/mIuY7NtlZZzVxhpOVVBZhm8OJRTe6aM3+yMOf+jgGy3RDMavYDVtu6Dv0SBfLsNkMZtC5IcI5vVOWFcgwWS6YdlZUuS6/VFwXaCVe0NN user1 ansible-target)    
-    displayName: 'Run Python and set pipeline variable'
+    displayName: 'Run Script and set pipeline variable'
 
   # 4) Use the variable
   - bash: |
@@ -40,7 +40,7 @@ steps:
       echo "IP: $(IP)"
       echo "USER: $(USER)"
       echo "PWD set: $([ -n "$(PASSWORD)" ] && echo yes || echo no)"
-    displayName: 'Use the Python value'
+    displayName: 'Use the script values'
 
   - script: |
       set -euo pipefail
@@ -81,6 +81,6 @@ steps:
         echo "##vso[task.logissue type=error]Remote command exited with code $RC"
         exit $RC
       fi
-    displayName: 'SSH, print output, propagate exit code'
+    displayName: 'Run SSH on the target, print output, propagate exit code'
 
   
