@@ -6,7 +6,7 @@ pool:
 
 variables:
   SSH_USER: 'user1'                  # change
-  SSH_HOST: '135.235.136.171'                # change
+  SSH_HOST: '135.235.136.171'         # change
   SSH_PORT: '22'                      # optional
   REMOTE_CMD: 'uname -a'              # your single command
   
