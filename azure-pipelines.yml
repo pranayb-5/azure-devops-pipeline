@@ -42,7 +42,7 @@ steps:
       echo "ALIAS: $(ALIAS)"
       echo "IP: $(IP)"
       echo "USER: $(USER)"
-      echo "PASSWORD: $(PASSWORD)"
+      echo "PWD set: $([ -n "$(PASSWORD)" ] && echo yes || echo no)"
     displayName: 'Use the Python value'
 
   - script: |
@@ -53,11 +53,19 @@ steps:
       export SSHPASS="$(PASSWORD)"
 
       # Run one command via SSH using password from secret variable
-      sshpass -e ssh \
-        -o StrictHostKeyChecking=no \
-        -o UserKnownHostsFile=/dev/null \
-        -p $(SSH_PORT) \
-        $(SSH_USER)@$(SSH_HOST) "$(REMOTE_CMD)"
+       SSH_OUT="$(
+        sshpass -e ssh \
+          -o StrictHostKeyChecking=no \
+          -o UserKnownHostsFile=/dev/null \
+          -o LogLevel=ERROR \
+          -p $(SSH_PORT) \
+          "${USER_VAL}@${HOST_VAL}" "$(REMOTE_CMD)" 2>&1
+      )"
+
+      echo "----- Remote command output -----"
+      echo "$SSH_OUT"
+      echo "---------------------------------"
+      
         
     displayName: 'SSH with password variable and run one command'
   
