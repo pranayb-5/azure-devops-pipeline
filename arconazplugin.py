@@ -1,5 +1,5 @@
 import sys
-from ArconSDK import ArconSDK
+from ArconSDKworking import ArconSDK
 
 
  
@@ -9,7 +9,7 @@ def get_sec(token,username,alias_name):
         data = [{
         "UserName": username,
         "AliasName": alias_name ,
-         "OpenForHours": 100  }]
+         "OpenForHours": 10  }]
         response = arcon_sdk.get_credential(data)
         if response:
             print("response:", response)
